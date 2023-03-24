@@ -49,8 +49,23 @@ var addBook = function (title, author_id, publisher_id, isbn) {
   });
 };
 
+var deleteBook = function (id) {
+  if (DEBUG) console.log("books.pg.dal.deleteBook()");
+  return new Promise(function (resolve, reject) {
+    const sql = `DELETE FROM public."book" WHERE id = $1;`;
+    dal.query(sql, [id], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result.rows);
+      }
+    });
+  });
+};
+
 module.exports = {
   getBooks,
   getBookById,
   addBook,
+  deleteBook,
 };

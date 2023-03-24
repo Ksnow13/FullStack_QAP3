@@ -40,4 +40,28 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/:id/delete", async (req, res) => {
+  if (DEBUG) console.log("book.Delete : " + req.params.id);
+  res.render("bookDelete.ejs", {
+    title: req.query.title,
+    author_id: req.query.author_id,
+    publisher_id: req.query.publisher_id,
+    isbn: req.query.isbn,
+    theId: req.params.id,
+  });
+});
+
+// PUT, PATCH, and DELETE
+
+router.delete("/:id", async (req, res) => {
+  if (DEBUG) console.log("books.DELETE: " + req.params.id);
+  try {
+    await booksDal.deleteBook(req.params.id);
+    res.redirect("/books");
+  } catch {
+    // log this error to an error log file.
+    res.render("503");
+  }
+});
+
 module.exports = router;
