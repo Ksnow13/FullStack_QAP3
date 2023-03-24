@@ -51,12 +51,40 @@ router.get("/:id/delete", async (req, res) => {
   });
 });
 
-// PUT, PATCH, and DELETE
+router.get("/:id/edit", async (req, res) => {
+  if (DEBUG) console.log("book.Edit : " + req.params.id);
+  res.render("bookPatch.ejs", {
+    title: req.query.title,
+    author_id: req.query.author_id,
+    publisher_id: req.query.publisher_id,
+    isbn: req.query.isbn,
+    theId: req.params.id,
+  });
+});
+
+//---------------------
 
 router.delete("/:id", async (req, res) => {
   if (DEBUG) console.log("books.DELETE: " + req.params.id);
   try {
     await booksDal.deleteBook(req.params.id);
+    res.redirect("/books");
+  } catch {
+    // log this error to an error log file.
+    res.render("503");
+  }
+});
+
+router.patch("/:id", async (req, res) => {
+  if (DEBUG) console.log("books.PATCH: " + req.params.id);
+  try {
+    await booksDal.patchBook(
+      req.params.id,
+      req.body.title,
+      req.body.author_id,
+      req.body.publisher_id,
+      req.body.isbn
+    );
     res.redirect("/books");
   } catch {
     // log this error to an error log file.
