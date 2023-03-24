@@ -1,0 +1,15 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/banner.ejs') %>
+        <div class="delete content">
+            <form action="/patrons/<%= locals.theId %>?_method_override=DELETE" method="POST">
+                <label>Are you sure you want to delete this Patron?</br>
+                    <input type="text" id="<%= locals.theId %>" name="patron" value="<%= locals.first_name %> <%= locals.last_name %>" readonly>
+                </label>
+                <button>DELETE</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>
