@@ -1,0 +1,17 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/banner.ejs') %>
+        <div class="edit content">
+            <form action="/authors/<%= locals.theId %>?_method_override=PATCH" method="POST">
+                <h3>Edit Author Info</h3>
+                  <label for="first_name">First Name: </label>  <input type="text" name="first_name" value="<%= locals.first_name %>" required>
+                  <label for="last_name">Last Name: </label> <input type="text" name="last_name" value="<%= locals.last_name %>" required>
+                  <label for="dob">Date Of Birth: </label> <input type="text" name="dob" value="<%= locals.dob %>" required>
+                </br> <br>
+                <button>PATCH</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>
