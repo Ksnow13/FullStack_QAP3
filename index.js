@@ -30,6 +30,9 @@ app.get("/about", (request, response) => {
 const booksRouter = require("./routes/books");
 app.use("/books", booksRouter);
 
+const authorsRouter = require("./routes/authors");
+app.use("/authors", authorsRouter);
+
 //----------
 
 app.use((req, res) => {

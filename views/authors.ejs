@@ -1,0 +1,36 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/banner.ejs') %>
+        <div class="bookscontent">
+            <form action="/authors" method="POST">
+                <b>Authors: </b></br> 
+            <% if (theAuthors.length > 0) { %>
+                <% theAuthors.forEach(author => { %>
+                    <div class="bookinfo">
+                    <p class="booktitle"><%= author.first_name %> <%= author.last_name %></p> 
+                    <b>ID: <%= author.id %> Date of Birth: <%= author.dob %> </b> <br>
+                    
+                    <a href="/authors/<%=author.id%>/edit?first_name=<%=author.first_name%>&last_name=<%=author.last_name%>&dob=<%=author.dob%>">edit</a>
+                    <a href="/authors/<%=author.id%>/delete?first_name=<%=author.first_name%>&last_name=<%=author.last_name%>&dob=<%=author.dob%>">delete</a>
+                    <a href="/authors/<%=author.id%>/replace?first_name=<%=author.first_name%>&last_name=<%=author.last_name%>&dob=<%=author.dob%>">replace</a></br> 
+                    </div>
+                    <% }) %>
+            <% } %>
+            </br><label>Add Book:</label></br>
+            <label>First Name:
+                <input type="text" id="first_name" name="first_name" value="<%= locals.first_name %>" required>
+            </label>
+            <label>Last Name:
+                <input type="text" id="last_name" name="last_name" value="<%= locals.last_name %>" required>
+            </label>
+            <label>Date Of Birth:
+                <input type="text" id="dob" name="dob" value="<%= locals.dob %>" required>
+            </label>
+            </br>
+            <button>POST</button>
+        </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>
