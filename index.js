@@ -33,6 +33,9 @@ app.use("/books", booksRouter);
 const authorsRouter = require("./routes/authors");
 app.use("/authors", authorsRouter);
 
+const patronsRouter = require("./routes/patrons");
+app.use("/patrons", patronsRouter);
+
 //----------
 
 app.use((req, res) => {
