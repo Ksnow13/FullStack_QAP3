@@ -1,0 +1,112 @@
+<html lang="en">
+  <%- include('./partials/header.ejs') %>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Anton&family=Poppins&family=Roboto&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Russo+One&display=swap");
+
+    :root {
+      --primary: #1494aa;
+      --dark: #0a3b85;
+      --light: #d2dddd;
+      --shadow: 0 1px 7px rgba(105, 105, 105, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      color: black;
+    }
+
+    body {
+      background-color: rgb(255, 255, 255);
+      line-height: 1.5rem;
+    }
+
+    .wrapper {
+      display: grid;
+      gap: 20px;
+    }
+
+    /* ---------------------------------------------------------------------------------------------------------------*/
+
+    /* Banner */
+
+    .title {
+      font-size: 3rem;
+      color: white;
+    }
+
+    .banner {
+      background-image: linear-gradient(to right, #870000, #190a05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 50px;
+      font-family: "Russo One", sans-serif;
+    }
+
+    .main-nav ul {
+      display: grid;
+
+      gap: 30px;
+
+      grid-template-columns: repeat(5, 1fr);
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .main-nav a {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      background-color: black;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      box-shadow: var(--shadow);
+      text-transform: uppercase;
+    }
+
+    .main-nav a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .bookscontent {
+    }
+
+    .bookinfo {
+      border: 2px solid black;
+    }
+
+    .booktitle {
+      font-size: 1.5rem;
+    }
+  </style>
+  <body>
+    <%- include('./partials/banner.ejs') %>
+    <div class="bookinfo">
+      <div class="logincontent">
+        <h2>Book:</h2>
+        <% if (aBook.length > 0) var book = aBook[0];{ %>
+
+        <p class="booktitle">[<%= book.title %>]</p>
+        <b
+          >Book id: <%= book.id %> Author id: <%= book.author_id %> publisher
+          id: <%= book.publisher_id %> ISBN: <%= book.isbn %>
+        </b>
+        <br />
+
+        <% } %>
+      </div>
+    </div>
+  </body>
+  <%- include('./partials/footer.ejs') %>
+</html>

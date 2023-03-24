@@ -6,7 +6,6 @@ const app = express();
 const PORT = 3000;
 
 const path = require("path");
-//const staticPath = path.join(__dirname, "./public");
 
 app.set("view engine", "ejs");
 //app.use(express.static("public"));
@@ -22,6 +21,20 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
+app.get("/about", (request, response) => {
+  response.render("about.ejs");
+});
+
+//----------
+
+const booksRouter = require("./routes/books");
+app.use("/books", booksRouter);
+
+//----------
+
+app.use((req, res) => {
+  res.status(404).render("404");
+});
 //--------------------------------------------------------------
 
 app.listen(PORT, () => {
