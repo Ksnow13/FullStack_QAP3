@@ -63,9 +63,28 @@ var deleteBook = function (id) {
   });
 };
 
+var patchBook = function (id, title, author_id, publisher_id, isbn) {
+  if (DEBUG) console.log("books.pg.dal.patchBook()");
+  return new Promise(function (resolve, reject) {
+    const sql = `UPDATE public."book" SET title=$2, author_id=$3, publisher_id=$4, isbn=$5 WHERE id=$1;`;
+    dal.query(
+      sql,
+      [id, title, author_id, publisher_id, isbn],
+      (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result.rows);
+        }
+      }
+    );
+  });
+};
+
 module.exports = {
   getBooks,
   getBookById,
   addBook,
   deleteBook,
+  patchBook,
 };
