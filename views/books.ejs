@@ -1,0 +1,39 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/banner.ejs') %>
+        <div class="bookscontent">
+            <form action="/books" method="POST">
+                <b>Books: </b></br> 
+            <% if (theBooks.length > 0) { %>
+                <% theBooks.forEach(book => { %>
+                    <div class="bookinfo">
+                    <p class="booktitle">[<%= book.title %>]</p> 
+                    <b>Book id: <%= book.id %> Author id: <%= book.author_id %> publisher id: <%= book.publisher_id %> ISBN: <%= book.isbn %> </b> <br>
+                    
+                    <a href="/books/<%=book.id%>/edit?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">edit</a>
+                    <a href="/books/<%=book.id%>/delete?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">delete</a>
+                    <a href="/books/<%=book.id%>/replace?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">replace</a></br> 
+                    </div>
+                    <% }) %>
+            <% } %>
+            </br><label>Add Book:</label></br>
+            <label>Title:
+                <input type="text" id="title" name="title" value="<%= locals.title %>" required>
+            </label>
+            <label>Author ID:
+                <input type="text" id="author_id" name="author_id" value="<%= locals.author_id %>" required>
+            </label>
+            <label>Publisher ID:
+                <input type="text" id="publisher_id" name="publisher_id" value="<%= locals.publisher_id %>" required>
+            </label>
+            <label>ISBN:
+                <input type="text" id="isbn" name="isbn" value="<%= locals.isbn %>" required>
+            </label>
+            </br>
+            <button>POST</button>
+        </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

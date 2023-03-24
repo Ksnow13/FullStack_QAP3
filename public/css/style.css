@@ -54,7 +54,7 @@ body {
 
   gap: 30px;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
   padding: 0;
 }
@@ -65,7 +65,6 @@ body {
   text-align: center;
   background-color: black;
   color: white;
-
   font-size: 1.2rem;
   padding: 0.5rem;
   box-shadow: var(--shadow);
@@ -75,4 +74,15 @@ body {
 .main-nav a:hover {
   background-color: white;
   color: black;
+}
+
+.bookscontent {
+}
+
+.bookinfo {
+  border: 2px solid black;
+}
+
+.booktitle {
+  font-size: 1.5rem;
 }
