@@ -38,6 +38,11 @@ app.use("/patrons", patronsRouter);
 
 //----------
 
+const apiRouter = require("./routes/api");
+app.use("/api", apiRouter);
+
+//------------
+
 app.use((req, res) => {
   res.status(404).render("404");
 });

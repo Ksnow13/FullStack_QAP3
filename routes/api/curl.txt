@@ -1,0 +1,47 @@
+
+books:
+
+get all books:  curl -X GET http://localhost:3000/api/books/
+
+get book by id:  curl -X GET http://localhost:3000/api/actors/1
+
+add book:  curl -d "title=Dune&author_id=2&publisher_id=3&isbn=Q890" -X POST http://localhost:3000/api/books
+
+put book: curl -d "title=Dune&author_id=2&publisher_id=3&isbn=A000" -X PUT http://localhost:3000/api/books/21
+
+patch book:  curl -d "title=Dune&author_id=2&publisher_id=3&isbn=B000" -X PATCH http://localhost:3000/api/books/21
+
+delete book:  curl -X DELETE http://localhost:3000/api/books/17
+
+//-------------------------------------------------------------------------------------------------------------------
+
+authors:
+
+get all authors:  curl -X GET http://localhost:3000/api/authors/
+
+get authors by id:  curl -X GET http://localhost:3000/api/authors/1
+
+add authors:  curl -d "first_name=RRR&last_name=williams&dob=1966-02-01" -X POST http://localhost:3000/api/authors
+
+put authors: curl -d "first_name=Ryan&last_name=williams&dob=1966-02-12" -X PUT http://localhost:3000/api/authors/13
+
+patch authors:  curl -d "first_name=Ryan&last_name=williams&dob=1966-06-17" -X PATCH http://localhost:3000/api/authors/13
+
+delete authors:  curl -X DELETE http://localhost:3000/api/authors/14
+
+//-------------------------------------------------------------------------------------------------------------------
+
+patrons:
+
+get all patrons:  curl -X GET http://localhost:3000/api/patrons/
+
+get patrons by id:  curl -X GET http://localhost:3000/api/patrons/1
+
+add patrons:  curl -d "first_name=Cory&last_name=Warrick&phone=(709) 000-7965&email=cory77@gmail.com&province_id=1&areacode_id=1" -X POST http://localhost:3000/api/patrons
+
+put patrons: curl -d "first_name=Cory&last_name=Warrick&phone=(709) 000-9999&email=cory77@gmail.com&province_id=1&areacode_id=1" -X PUT http://localhost:3000/api/patrons/14
+
+patch patrons:  curl -d "first_name=Cory&last_name=Warrick&phone=(709) 709-7965&email=cory77@gmail.com&province_id=1&areacode_id=1" -X PATCH http://localhost:3000/api/patrons/14
+
+delete patrons:  curl -X DELETE http://localhost:3000/api/patrons/13
+
