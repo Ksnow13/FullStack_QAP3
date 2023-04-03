@@ -1,8 +1,10 @@
-//--------------------------------
+// setting up packages and functions
 
 const express = require("express");
 const router = express.Router();
 const authorsDal = require("../services/pg.authors.dal");
+
+// router to get authors from database - GET
 
 router.get("/", async (req, res) => {
   try {
@@ -10,19 +12,25 @@ router.get("/", async (req, res) => {
     if (DEBUG) console.table(theAuthors);
     res.render("authors", { theAuthors });
   } catch {
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
 
+// router to get an author by id - GET
+
 router.get("/:id", async (req, res) => {
   try {
-    let aAuthor = await authorsDal.getAuthorById(req.params.id); // from postgresql
+    let aAuthor = await authorsDal.getAuthorById(req.params.id);
     if (aAuthor.length === 0) res.render("norecordfound");
     else res.render("author", { aAuthor });
   } catch {
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
+
+// router to add a author to the database - POST
 
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("authors.POST");
@@ -34,10 +42,12 @@ router.post("/", async (req, res) => {
     );
     res.redirect("/authors");
   } catch {
-    // log this error to an error log file.
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
+
+// router to delete an author by id - DELETE
 
 router.get("/:id/delete", async (req, res) => {
   if (DEBUG) console.log("author.Delete : " + req.params.id);
@@ -49,6 +59,8 @@ router.get("/:id/delete", async (req, res) => {
   });
 });
 
+// router to edit an author by id - PATCH
+
 router.get("/:id/edit", async (req, res) => {
   if (DEBUG) console.log("author.Edit : " + req.params.id);
   res.render("authorPatch.ejs", {
@@ -58,6 +70,8 @@ router.get("/:id/edit", async (req, res) => {
     theId: req.params.id,
   });
 });
+
+// router to replace an author by id - PUT
 
 router.get("/:id/replace", async (req, res) => {
   if (DEBUG) console.log("author.Replace : " + req.params.id);
@@ -69,7 +83,7 @@ router.get("/:id/replace", async (req, res) => {
   });
 });
 
-//----------------------------------------------
+// creating the delete router
 
 router.delete("/:id", async (req, res) => {
   if (DEBUG) console.log("authors.DELETE: " + req.params.id);
@@ -77,10 +91,12 @@ router.delete("/:id", async (req, res) => {
     await authorsDal.deleteAuthor(req.params.id);
     res.redirect("/authors");
   } catch {
-    // log this error to an error log file.
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
+
+// creating the patch router
 
 router.patch("/:id", async (req, res) => {
   if (DEBUG) console.log("authors.PATCH: " + req.params.id);
@@ -93,10 +109,12 @@ router.patch("/:id", async (req, res) => {
     );
     res.redirect("/authors");
   } catch {
-    // log this error to an error log file.
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
+
+// creating the put router
 
 router.put("/:id", async (req, res) => {
   if (DEBUG) console.log("author.PUT: " + req.params.id);
@@ -109,9 +127,11 @@ router.put("/:id", async (req, res) => {
     );
     res.redirect("/authors");
   } catch {
-    // log this error to an error log file.
+    if (DEBUG) console.log("Error 503 - Internal Server Error.");
     res.render("503");
   }
 });
+
+// exporting the routers
 
 module.exports = router;

@@ -1,4 +1,8 @@
+// getting connect to the data base
+
 const dal = require("./qap3_pg_db");
+
+// function to get all patrons from the database
 
 var getPatrons = function () {
   if (DEBUG) console.log("patrons.pg.dal.getPatrons()");
@@ -7,7 +11,6 @@ var getPatrons = function () {
           ORDER BY id DESC LIMIT 6;`;
     dal.query(sql, [], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -17,13 +20,14 @@ var getPatrons = function () {
   });
 };
 
+// function to get book from the database by id
+
 var getPatronById = function (id) {
   if (DEBUG) console.log("patrons.pg.dal.getPatronById()");
   return new Promise(function (resolve, reject) {
     const sql = `SELECT id, first_name, last_name, phone, email, province_id, areacode_id FROM public."patron" WHERE id = $1`;
     dal.query(sql, [id], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -32,6 +36,8 @@ var getPatronById = function (id) {
     });
   });
 };
+
+// function to add a patron to the database
 
 var addPatron = function (
   first_name,
@@ -60,6 +66,8 @@ var addPatron = function (
   });
 };
 
+// function to delete a patron from the database by id
+
 var deletePatron = function (id) {
   if (DEBUG) console.log("patrons.pg.dal.deletePatron()");
   return new Promise(function (resolve, reject) {
@@ -73,6 +81,8 @@ var deletePatron = function (id) {
     });
   });
 };
+
+// function to edit a patron from the database
 
 var patchPatron = function (
   id,
@@ -100,6 +110,8 @@ var patchPatron = function (
   });
 };
 
+// function to replace a patron from the database
+
 var putPatron = function (
   id,
   first_name,
@@ -125,6 +137,8 @@ var putPatron = function (
     );
   });
 };
+
+// exporting functions
 
 module.exports = {
   getPatrons,

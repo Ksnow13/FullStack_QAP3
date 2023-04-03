@@ -1,5 +1,9 @@
+// setting up express router and getting access to pg.authors.dal
+
 var router = require("express").Router();
 const authorsDal = require("../../services/pg.authors.dal");
+
+// router to get all authors in json format using the api
 
 router.get("/", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/authors/ GET " + req.url);
@@ -7,32 +11,32 @@ router.get("/", async (req, res) => {
     let theAuthors = await authorsDal.getAuthors();
     res.json(theAuthors);
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
+
+// router to get an author by id in json format using the api
 
 router.get("/:id", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/authors/:id GET " + req.url);
   try {
     let aAuthor = await authorsDal.getAuthorById(req.params.id);
     if (aAuthor.length === 0) {
-      // log this error to an error log file.
       res.statusCode = 404;
       res.json({ message: "Not Found", status: 404 });
     } else res.json(aAuthor);
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
 
+// router to add an author using the api
+
 router.post("/", async (req, res) => {
   if (DEBUG) {
     console.log("ROUTE: /api/authors/ POST");
-    //    console.log(req);
   }
   try {
     await authorsDal.addAuthor(
@@ -43,11 +47,12 @@ router.post("/", async (req, res) => {
     res.statusCode = 201;
     res.json({ message: "Created", status: 201 });
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
+
+// router to edit an author using the api
 
 router.put("/:id", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/authors PUT " + req.params.id);
@@ -61,11 +66,12 @@ router.put("/:id", async (req, res) => {
     res.statusCode = 200;
     res.json({ message: "OK", status: 200 });
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
+
+// router to replace an author using the api
 
 router.patch("/:id", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/authors PATCH " + req.params.id);
@@ -79,11 +85,12 @@ router.patch("/:id", async (req, res) => {
     res.statusCode = 200;
     res.json({ message: "OK", status: 200 });
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
+
+// router to delete an author using the api
 
 router.delete("/:id", async (req, res) => {
   if (DEBUG) console.log("ROUTE: /api/authors DELETE " + req.params.id);
@@ -92,10 +99,11 @@ router.delete("/:id", async (req, res) => {
     res.statusCode = 200;
     res.json({ message: "OK", status: 200 });
   } catch {
-    // log this error to an error log file.
     res.statusCode = 503;
     res.json({ message: "Service Unavailable", status: 503 });
   }
 });
+
+// exporting the routers
 
 module.exports = router;
