@@ -76,13 +76,117 @@ body {
   color: black;
 }
 
-.bookscontent {
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+.info-box {
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
-.bookinfo {
+.info-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.container-1 {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  text-align: center;
+  max-width: 1060px;
+}
+
+.container-title {
+  padding-bottom: 2rem;
+}
+
+a:hover {
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+
+.edit {
+  color: white;
+  text-decoration: none;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
   border: 2px solid black;
+  border-radius: 4px;
+  background-color: rgb(0, 128, 0);
 }
 
-.booktitle {
-  font-size: 1.5rem;
+.delete {
+  color: white;
+  text-decoration: none;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border: 2px solid black;
+  border-radius: 4px;
+  margin-left: 1.8rem;
+  margin-right: 1.8rem;
+  background-color: red;
+}
+
+.replace {
+  color: white;
+  text-decoration: none;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: rgb(52, 52, 236);
+}
+
+.form-input {
+  border: 4px solid black;
+  text-align-last: center;
+  display: grid;
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1rem;
+  align-content: center;
+}
+
+.input-title {
+  font-size: 1.8rem;
+}
+
+button {
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.input-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  text-align: center;
+  max-width: 1060px;
+}
+
+.home-container {
+  margin-top: 7rem;
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 50px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin-top: 5rem;
 }

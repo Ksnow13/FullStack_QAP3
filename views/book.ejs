@@ -79,31 +79,48 @@
       color: black;
     }
 
-    .bookscontent {
+    .div-info {
+      border: 4px solid black;
+      border-radius: 20px;
+      padding: 1rem;
+      margin-top: 2rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      max-width: 1060px;
+      padding-top: 2rem;
+      margin-top: 7rem;
     }
 
-    .bookinfo {
-      border: 2px solid black;
+    .div-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
 
-    .booktitle {
-      font-size: 1.5rem;
+    .container-1 {
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1rem;
+      text-align: center;
+      max-width: 1060px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 5rem;
     }
   </style>
   <body>
     <%- include('./partials/banner.ejs') %>
-    <div class="bookinfo">
-      <div class="logincontent">
-        <h2>Book:</h2>
+    <div class="div-info">
+      <div class="container-1">
         <% if (aBook.length > 0) var book = aBook[0];{ %>
 
-        <p class="booktitle">[<%= book.title %>]</p>
-        <b
-          >Book id: <%= book.id %> Author id: <%= book.author_id %> publisher
-          id: <%= book.publisher_id %> ISBN: <%= book.isbn %>
-        </b>
+        <p class="div-title"><%= book.title %></p>
+        <p>
+          Book id: <%= book.id %> Author id: <%= book.author_id %> publisher id:
+          <%= book.publisher_id %> ISBN: <%= book.isbn %>
+        </p>
         <br />
-
         <% } %>
       </div>
     </div>

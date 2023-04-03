@@ -4,40 +4,52 @@
         <%- include('./partials/banner.ejs') %>
         <div class="bookscontent">
             <form action="/patrons" method="POST">
-                <b>Patrons: </b></br> 
-            <% if (thePatrons.length > 0) { %>
-                <% thePatrons.forEach(patron => { %>
-                    <div class="bookinfo">
-                    <p class="booktitle"><%= patron.first_name %> <%= patron.last_name %></p> 
-                    <b>ID: <%= patron.id %> Phone: <%= patron.phone %> Email: <%= patron.email %> Province Id: <%= patron.province_id %> Area Code ID: <%= patron.areacode_id %> </b> <br>
-                    
-                    <a href="/patrons/<%=patron.id%>/edit?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">edit</a>
-                    <a href="/patrons/<%=patron.id%>/delete?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">delete</a>
-                    <a href="/patrons/<%=patron.id%>/replace?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">replace</a></br> 
-                    </div>
-                    <% }) %>
-            <% } %>
-            </br><label>Add Patron:</label></br>
-            <label>First Name:
-                <input type="text" id="first_name" name="first_name" value="<%= locals.first_name %>" required>
-            </label>
-            <label>Last Name:
-                <input type="text" id="last_name" name="last_name" value="<%= locals.last_name %>" required>
-            </label>
-            <label>Phone:
-                <input type="text" id="phone" name="phone" value="<%= locals.phone %>" required>
-            </label>
-            <label>Email:
-                <input type="text" id="email" name="email" value="<%= locals.email %>" required>
-            </label>
-            <label>Province ID:
-                <input type="text" id="province_id" name="province_id" value="<%= locals.province_id %>" required>
-            </label>
-            <label>Area Code ID:
-                <input type="text" id="areacode_id" name="areacode_id" value="<%= locals.areacode_id %>" required>
-            </label>
-            </br>
-            <button>POST</button>
+                <div class="container-1">
+                    <h1 class="container-title"><b>Patrons</b></h1> 
+                <% if (thePatrons.length > 0) { %>
+                    <% thePatrons.forEach(patron => { %>
+                        <div class="info-box"> 
+                        <p class="info-title"><b><%= patron.first_name %> <%= patron.last_name %></b></p> 
+                        <p class="container-info">ID: <%= patron.id %> Phone: <%= patron.phone %> Email: <%= patron.email %> Province Id: <%= patron.province_id %> Area Code ID: <%= patron.areacode_id %> </p> <br>
+                        
+                        <a class="edit" href="/patrons/<%=patron.id%>/edit?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">edit</a>
+                        <a class="delete" href="/patrons/<%=patron.id%>/delete?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">delete</a>
+                        <a class="replace" href="/patrons/<%=patron.id%>/replace?first_name=<%=patron.first_name%>&last_name=<%=patron.last_name%>&phone=<%=patron.phone%>&email=<%=patron.email%>&province_id=<%=patron.province_id%>&areacode_id=<%=patron.areacode_id%>">replace</a></br> 
+                        </div>
+                        <% }) %>
+                <% } %>
+        </div>
+            <div class="input-container">
+                <div class="form-input">
+                </br><label class="input-title"><b>Add A Patron</b></label></br>
+                <p>First Name</p>
+                    <label>
+                        <input type="text" id="first_name" name="first_name" value="<%= locals.first_name %>" required>
+                    </label>
+                    <p>Last Name</p>
+                    <label>
+                        <input type="text" id="last_name" name="last_name" value="<%= locals.last_name %>" required>
+                    </label>
+                    <p>Phone Number</p>
+                    <label>
+                        <input type="text" id="phone" name="phone" value="<%= locals.phone %>" required>
+                    </label>
+                    <p>Email</p>
+                    <label>
+                        <input type="text" id="email" name="email" value="<%= locals.email %>" required>
+                    </label>
+                    <p>Province ID</p>
+                    <label>
+                        <input type="text" id="province_id" name="province_id" value="<%= locals.province_id %>" required>
+                    </label>
+                    <p>Area Code ID</p>
+                    <label>
+                        <input type="text" id="areacode_id" name="areacode_id" value="<%= locals.areacode_id %>" required>
+                    </label>
+                    </br>
+                    <button>POST</button>
+                </div>
+            </div>
         </form>
         </div>
     </body>

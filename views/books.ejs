@@ -4,35 +4,45 @@
         <%- include('./partials/banner.ejs') %>
         <div class="bookscontent">
             <form action="/books" method="POST">
-                <b>Books: </b></br> 
-            <% if (theBooks.length > 0) { %>
-                <% theBooks.forEach(book => { %>
-                    <div class="bookinfo">
-                    <p class="booktitle">[<%= book.title %>]</p> 
-                    <b>Book id: <%= book.id %> Author id: <%= book.author_id %> publisher id: <%= book.publisher_id %> ISBN: <%= book.isbn %> </b> <br>
-                    
-                    <a href="/books/<%=book.id%>/edit?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">edit</a>
-                    <a href="/books/<%=book.id%>/delete?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">delete</a>
-                    <a href="/books/<%=book.id%>/replace?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">replace</a></br> 
+                <div class="container-1">
+                    <h1 class="container-title"><b>Books</b></h1>
+                <% if (theBooks.length > 0) { %>
+                    <% theBooks.forEach(book => { %>
+                        <div class="info-box">
+                        <p class="info-title"><b><%= book.title %></b></p> 
+                        <p class="container-info">Book id: <%= book.id %> Author id: <%= book.author_id %> publisher id: <%= book.publisher_id %> ISBN: <%= book.isbn %></p> <br>
+                        
+                        <a class="edit" href="/books/<%=book.id%>/edit?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">edit</a>
+                        <a class="delete" href="/books/<%=book.id%>/delete?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">delete</a>
+                        <a class="replace" href="/books/<%=book.id%>/replace?title=<%=book.title%>&author_id=<%=book.author_id%>&publisher_id=<%=book.publisher_id%>&isbn=<%=book.isbn%>">replace</a></br> 
+                        </div>
+                        <% }) %>
+                <% } %>
+                </div>
+                <div class="input-container">
+                    <div class="form-input">
+                        </br><label class="input-title"><b>Add A Book</b></label></br>
+                        <p>Title</p>
+                        <label>
+                            <input type="text" id="title" name="title" value="<%= locals.title %>" required>
+                        </label>
+                        <p>Author ID</p>
+                        <label>
+                            <input type="text" id="author_id" name="author_id" value="<%= locals.author_id %>" required>
+                        </label>
+                        <p>Publisher ID</p>
+                        <label>
+                            <input type="text" id="publisher_id" name="publisher_id" value="<%= locals.publisher_id %>" required>
+                        </label>
+                        <p>ISBN</p>
+                        <label>
+                            <input type="text" id="isbn" name="isbn" value="<%= locals.isbn %>" required>
+                        </label>
+                        </br>
+                        <button>POST</button>
                     </div>
-                    <% }) %>
-            <% } %>
-            </br><label>Add Book:</label></br>
-            <label>Title:
-                <input type="text" id="title" name="title" value="<%= locals.title %>" required>
-            </label>
-            <label>Author ID:
-                <input type="text" id="author_id" name="author_id" value="<%= locals.author_id %>" required>
-            </label>
-            <label>Publisher ID:
-                <input type="text" id="publisher_id" name="publisher_id" value="<%= locals.publisher_id %>" required>
-            </label>
-            <label>ISBN:
-                <input type="text" id="isbn" name="isbn" value="<%= locals.isbn %>" required>
-            </label>
-            </br>
-            <button>POST</button>
-        </form>
+                </div>
+            </form>
         </div>
     </body>
     <%- include('./partials/footer.ejs') %>
