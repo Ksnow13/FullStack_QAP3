@@ -1,4 +1,8 @@
+// getting connect to the data base
+
 const dal = require("./qap3_pg_db");
+
+// function to get all books from the database
 
 var getBooks = function () {
   if (DEBUG) console.log("books.pg.dal.getBooks()");
@@ -7,7 +11,6 @@ var getBooks = function () {
           ORDER BY id DESC LIMIT 6;`;
     dal.query(sql, [], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -17,13 +20,14 @@ var getBooks = function () {
   });
 };
 
+// function to get a books from the database by id
+
 var getBookById = function (id) {
   if (DEBUG) console.log("books.pg.dal.getBookById()");
   return new Promise(function (resolve, reject) {
     const sql = `SELECT id, title, author_id, publisher_id, isbn FROM public."book" WHERE id = $1`;
     dal.query(sql, [id], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -32,6 +36,8 @@ var getBookById = function (id) {
     });
   });
 };
+
+// function to add a books to the database
 
 var addBook = function (title, author_id, publisher_id, isbn) {
   if (DEBUG) console.log("books.pg.dal.addBook()");
@@ -49,6 +55,8 @@ var addBook = function (title, author_id, publisher_id, isbn) {
   });
 };
 
+// function to delete a book from the database by id
+
 var deleteBook = function (id) {
   if (DEBUG) console.log("books.pg.dal.deleteBook()");
   return new Promise(function (resolve, reject) {
@@ -62,6 +70,8 @@ var deleteBook = function (id) {
     });
   });
 };
+
+// function to edit a book from the database
 
 var patchBook = function (id, title, author_id, publisher_id, isbn) {
   if (DEBUG) console.log("books.pg.dal.patchBook()");
@@ -81,6 +91,8 @@ var patchBook = function (id, title, author_id, publisher_id, isbn) {
   });
 };
 
+// function to replace a book from the database
+
 var putBook = function (id, title, author_id, publisher_id, isbn) {
   if (DEBUG) console.log("books.pg.dal.putBook()");
   return new Promise(function (resolve, reject) {
@@ -98,6 +110,8 @@ var putBook = function (id, title, author_id, publisher_id, isbn) {
     );
   });
 };
+
+// exporting functions
 
 module.exports = {
   getBooks,

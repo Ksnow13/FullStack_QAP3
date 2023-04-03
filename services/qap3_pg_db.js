@@ -1,4 +1,4 @@
-//------------------------------------------------------------------
+// file to connect to the data base
 
 const Pool = require("pg").Pool;
 

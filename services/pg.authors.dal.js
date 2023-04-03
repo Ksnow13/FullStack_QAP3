@@ -1,4 +1,8 @@
+// getting connect to the data base
+
 const dal = require("./qap3_pg_db");
+
+// function to get all authors from the database
 
 var getAuthors = function () {
   if (DEBUG) console.log("authors.pg.dal.getAuthors()");
@@ -7,7 +11,6 @@ var getAuthors = function () {
           ORDER BY id DESC LIMIT 6;`;
     dal.query(sql, [], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -17,13 +20,14 @@ var getAuthors = function () {
   });
 };
 
+// function to get an author by id
+
 var getAuthorById = function (id) {
   if (DEBUG) console.log("authors.pg.dal.getAuthorById()");
   return new Promise(function (resolve, reject) {
     const sql = `SELECT id, first_name, last_name, dob FROM public."author" WHERE id = $1`;
     dal.query(sql, [id], (err, result) => {
       if (err) {
-        // logging should go here
         if (DEBUG) console.log(err);
         reject(err);
       } else {
@@ -32,6 +36,8 @@ var getAuthorById = function (id) {
     });
   });
 };
+
+// function to add an author
 
 var addAuthor = function (first_name, last_name, dob) {
   if (DEBUG) console.log("authors.pg.dal.addAuthor()");
@@ -49,6 +55,8 @@ var addAuthor = function (first_name, last_name, dob) {
   });
 };
 
+// function to delete an author by id
+
 var deleteAuthor = function (id) {
   if (DEBUG) console.log("authors.pg.dal.deleteAuthor()");
   return new Promise(function (resolve, reject) {
@@ -62,6 +70,8 @@ var deleteAuthor = function (id) {
     });
   });
 };
+
+// function to edit an author
 
 var patchAuthor = function (id, first_name, last_name, dob) {
   if (DEBUG) console.log("authors.pg.dal.patchAuthor()");
@@ -77,6 +87,8 @@ var patchAuthor = function (id, first_name, last_name, dob) {
   });
 };
 
+// function to replace an author
+
 var putAuthor = function (id, first_name, last_name, dob) {
   if (DEBUG) console.log("authors.pg.dal.putAuthor()");
   return new Promise(function (resolve, reject) {
@@ -90,6 +102,8 @@ var putAuthor = function (id, first_name, last_name, dob) {
     });
   });
 };
+
+// exporting functions
 
 module.exports = {
   getAuthors,
